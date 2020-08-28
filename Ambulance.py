@@ -33,7 +33,7 @@ class Ambulance(object):
             coeff2 = next_node[0] - self.position[0]
             eq1 = Eq(coeff1 * x - coeff2 * y, coeff1 * self.position[0] - coeff2 * self.position[1])
 
-            point = plt.plot(self.position[0], self.position[1], marker='o', color='g')
+            point = plt.plot(self.position[0], self.position[1], marker='o', color='g',markersize=12)
 
             while not self.position == next_node:
                 for p in point:
@@ -67,9 +67,12 @@ class Ambulance(object):
 
             path.remove()
 
+            plt.clf()
             node_labels = nx.get_node_attributes(self.road_map.graph, 'traffic_cong')
             self.road_map.update_congestion()
+            nx.draw(self.road_map.graph,pos=self.get_node_positions())
             updated_node_labels = nx.get_node_attributes(self.road_map.graph, 'traffic_cong')
+    
             nx.draw_networkx_labels(self.road_map.graph.nodes, pos=self.get_node_positions(),
                                     labels=updated_node_labels, font_color='w')
 
@@ -83,7 +86,8 @@ class Ambulance(object):
     def draw_road_map(self):
         positions = self.get_node_positions()
 
-        nx.draw(self.road_map.graph, with_labels=True, pos=positions)
+        plt.clf()
+        nx.draw(self.road_map.graph, with_labels=False, pos=positions)
         node_labels = nx.get_node_attributes(self.road_map.graph, 'traffic_cong')
         nx.draw_networkx_labels(self.road_map.graph.nodes, pos=positions, labels=node_labels, font_color='w')
 

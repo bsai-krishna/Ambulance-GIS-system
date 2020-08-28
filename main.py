@@ -24,7 +24,7 @@ def generate_graph():
         next(points)
 
         for row in points:
-            myGraph.add_node((int(row[0]), int(row[1])), traffic_cong=int(row[4]))
+            myGraph.add_node((int(row[0]), int(row[1])), traffic_cong=int(row[2]))
 
     with open("roads.csv", "r") as f:
         roads = csv.reader(f)
@@ -41,8 +41,8 @@ myGraph = generate_graph()
 
 # user inputs
 ambulance_speed = 30
-source = (250, 500)
-destination = (1000, 500)
+source = (80,0)
+destination = (687, 700)
 
 # main execution code
 env = simpy.rt.RealtimeEnvironment(factor=0.1, strict=False)
