@@ -79,7 +79,7 @@ class Ambulance(object):
                     my_labels[key].append(value)
             nx.draw(self.road_map.graph, pos=self.get_node_positions())
             nx.draw_networkx_labels(self.road_map.graph.nodes, pos=self.get_node_positions(),
-                                    labels=my_labels, font_color='black',font_size=10)
+                                    labels=my_labels, font_color='black', font_size=10)
         print(final_best_path)
 
     def draw_road_map(self):
@@ -87,15 +87,15 @@ class Ambulance(object):
 
         plt.clf()
         my_labels = defaultdict(list)
-        updated_node_labels = nx.get_node_attributes(self.road_map.graph, 'traffic_cong')
-        node_names=nx.get_node_attributes(self.road_map.graph,'name')
+        node_congestion = nx.get_node_attributes(self.road_map.graph, 'traffic_cong')
+        node_names = nx.get_node_attributes(self.road_map.graph, 'name')
 
-        for d in (node_names,updated_node_labels): # you can list as many input dicts as you want here
+        for d in (node_names, node_congestion): # you can list as many input dicts as you want here
             for key, value in d.items():
                 my_labels[key].append(value)
         nx.draw(self.road_map.graph, with_labels=False, pos=positions)
-        #node_labels = nx.get_node_attributes(self.road_map.graph, 'traffic_cong')
-        nx.draw_networkx_labels(self.road_map.graph.nodes, pos=positions, labels=my_labels, font_color='black',font_size=10)
+        nx.draw_networkx_labels(self.road_map.graph.nodes, pos=positions,
+                                labels=my_labels, font_color='black', font_size=10)
 
         plt.ion()
         plt.show()
