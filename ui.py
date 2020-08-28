@@ -7,21 +7,24 @@ window=Tk()
 window.configure(background='light blue')
 
 def start():
-	if (destination.get() == "" and source.get() == "") or (destination.get()==source.get()):
-		print("empty/invalid inputs")
-		
-	with open("points.csv", "r") as f:
-		roads = csv.reader(f)
-		next(roads)
-		for row in roads:
-			if destination.get() == row[5]:
-				dest=(row[0],row[1])
-			if source.get()==row[5]:
-				sour=(row[0],row[1])
-		print(dest)
-		print(sour)
-	#calling the main funtion in main.py ... we have to make main_function in main.py
-	#m.main_function(sour,dest)
+    if (destination.get() == "" and source.get() == "") or (destination.get()==source.get()):
+        print("empty/invalid inputs")
+        
+    with open("points.csv", "r") as f:
+        roads = csv.reader(f)
+        next(roads)
+        for row in roads:
+            if destination.get() == row[6]:
+                dest=(int(row[0]),int(row[1]))
+            if source.get()==row[6]:
+                sour=(int(row[0]),int(row[1]))
+        print(dest)
+        print(sour)
+        s=int(speed.get())
+        print(s)
+    #calling the main funtion in main.py ... we have to make main_function in main.py
+    import main as m
+    m.main_function(sour,dest,s)
 
 var = StringVar()
 var.set("Pulchowk")
@@ -31,21 +34,32 @@ data=("Pulchowk", "Baneswor", "Thapathali", "Maitighar","Jawlakhel","Kupondole")
 lbl=Label(window, text="Ambulance GIS System", fg='black', font=("Helvetica", 20),bg='light blue')
 lbl.place(x=70, y=20)
 
-lbl=Label(window, text="Destination", fg='black', font=("Helvetica", 10),bg='light blue')
-lbl.place(x=160, y=130)
+lbl1=Label(window, text=">> Enter your location speed and destination", fg='black', font=("Helvetica", 8),bg='light blue')
+lbl1.place(x=80, y=100)
+lbl2=Label(window, text=">> See Realtime Traffic at different places", fg='black', font=("Helvetica", 8),bg='light blue')
+lbl2.place(x=80, y=120)
+lbl3=Label(window, text=">> Get the best path suggested in the map", fg='black', font=("Helvetica", 8),bg='light blue')
+lbl3.place(x=80, y=140)
+
+lbl4=Label(window, text="Destination", fg='black', font=("Helvetica", 10),bg='light blue')
+lbl4.place(x=160, y=180)
 destination=Entry()
-destination.place(x=140,y=150)
-d=destination.get()
+destination.place(x=140,y=200)
+
+lbl5=Label(window, text="Speed", fg='black', font=("Helvetica", 10),bg='light blue')
+lbl5.place(x=160, y=230)
+speed=Entry()
+speed.place(x=140,y=250)
 
 
 #cb=Combobox(window, values=data)
 #cb.place(x=60, y=150)
 
-lbl1=Label(window, text="Where are you?", fg='black', font=("Helvetica", 10), bg='light blue')
-lbl1.place(x=150, y=280)
+lbl5=Label(window, text="Where are you?", fg='black', font=("Helvetica", 10), bg='light blue')
+lbl5.place(x=150, y=280)
 source=Entry()
 source.place(x=140,y=300)
-s=source.get()
+
 
 #cb1=Combobox(window, values=data)
 #cb1.place(x=60, y=300)
