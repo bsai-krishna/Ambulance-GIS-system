@@ -41,7 +41,7 @@ myGraph = generate_graph()
 
 # user inputs
 ambulance_speed = 30
-source = (80,0)
+source = (80, 0)
 destination = (687, 700)
 
 # main execution code
@@ -50,21 +50,5 @@ my_road = RoadMap(myGraph)
 my_ambulance = Ambulance(env, my_road, ambulance_speed, source, destination) # roadmap should have been drawn
 my_ambulance.env.process(my_ambulance.drive_to_destination())
 my_ambulance.env.run()
-#
-# nodeList = list(myGraph.nodes)
-# edgeList = list(myGraph.edges)
-#
-# # for drawing graph according to the coordinates
-# positions = dict()
-# for node in nodeList:
-#     positions[node] = node
-#
-# nx.draw(myGraph, with_labels=True, pos=positions)
-# node_labels = nx.get_node_attributes(myGraph, 'traffic_cong')
-# nx.draw_networkx_labels(myGraph, pos=positions, labels=node_labels, font_color='w')
-#
-# plt.ion()
-# plt.show()
-# plt.pause(0.1)
 
 

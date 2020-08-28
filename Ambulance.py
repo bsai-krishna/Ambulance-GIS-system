@@ -68,19 +68,12 @@ class Ambulance(object):
             path.remove()
 
             plt.clf()
-            node_labels = nx.get_node_attributes(self.road_map.graph, 'traffic_cong')
             self.road_map.update_congestion()
-            nx.draw(self.road_map.graph,pos=self.get_node_positions())
+            nx.draw(self.road_map.graph, pos=self.get_node_positions())
             updated_node_labels = nx.get_node_attributes(self.road_map.graph, 'traffic_cong')
     
             nx.draw_networkx_labels(self.road_map.graph.nodes, pos=self.get_node_positions(),
                                     labels=updated_node_labels, font_color='w')
-
-            mapping = {}
-            for key in set(node_labels.keys()) & set(updated_node_labels.keys()):
-                mapping[node_labels[key]] = updated_node_labels[key]
-            print(f"mapping:{mapping}")
-            nx.relabel_nodes(self.road_map.graph, mapping)
         print(final_best_path)
 
     def draw_road_map(self):
