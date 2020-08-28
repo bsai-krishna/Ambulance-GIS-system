@@ -17,9 +17,9 @@ python 3.7 or greater
 4. **NetworkX** for graphical representation <br/> ```pip install networkx==2.5```
 5. **pandas** for data structures <br/> ```pip install pandas==1.1.1```
 
-Or all these packages can be directly installed using the requiremnts.txt using command ```pip install -r requirements.txt```
+Or all these packages can be directly installed using the requiremnts.txt using command <br/>```pip install -r requirements.txt```
 
-## Running
+## Running:
 * Go to project directory
 * Run simulation using python <br/> ```python ui.py```
 
