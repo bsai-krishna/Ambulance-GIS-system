@@ -2,6 +2,7 @@ import math
 from sympy import symbols, Eq, solve  # for solving equations
 import matplotlib.pyplot as plt
 import networkx as nx
+from collections import defaultdict
 
 
 def find_distance(p1, p2):
@@ -62,27 +63,39 @@ class Ambulance(object):
                     # finding which point moves the ambulance towards next node
                     self.position = min(dist_with_next_node.items(), key=lambda k: k[1])[0]
 
-                point = plt.plot(self.position[0], self.position[1], marker='o', color='g')
+                point = plt.plot(self.position[0], self.position[1], marker='o', color='r',markersize=15)
                 plt.pause(0.1)
 
             path.remove()
 
             plt.clf()
             self.road_map.update_congestion()
-            nx.draw(self.road_map.graph, pos=self.get_node_positions())
+            my_labels = defaultdict(list)
             updated_node_labels = nx.get_node_attributes(self.road_map.graph, 'traffic_cong')
-    
+            node_names=nx.get_node_attributes(self.road_map.graph,'name')
+
+            for d in (node_names,updated_node_labels): # you can list as many input dicts as you want here
+                for key, value in d.items():
+                    my_labels[key].append(value)
+            nx.draw(self.road_map.graph, pos=self.get_node_positions())
             nx.draw_networkx_labels(self.road_map.graph.nodes, pos=self.get_node_positions(),
-                                    labels=updated_node_labels, font_color='w')
+                                    labels=my_labels, font_color='black',font_size=10)
         print(final_best_path)
 
     def draw_road_map(self):
         positions = self.get_node_positions()
 
         plt.clf()
+        my_labels = defaultdict(list)
+        updated_node_labels = nx.get_node_attributes(self.road_map.graph, 'traffic_cong')
+        node_names=nx.get_node_attributes(self.road_map.graph,'name')
+
+        for d in (node_names,updated_node_labels): # you can list as many input dicts as you want here
+            for key, value in d.items():
+                my_labels[key].append(value)
         nx.draw(self.road_map.graph, with_labels=False, pos=positions)
-        node_labels = nx.get_node_attributes(self.road_map.graph, 'traffic_cong')
-        nx.draw_networkx_labels(self.road_map.graph.nodes, pos=positions, labels=node_labels, font_color='w')
+        #node_labels = nx.get_node_attributes(self.road_map.graph, 'traffic_cong')
+        nx.draw_networkx_labels(self.road_map.graph.nodes, pos=positions, labels=my_labels, font_color='black',font_size=10)
 
         plt.ion()
         plt.show()
@@ -108,7 +121,7 @@ class Ambulance(object):
 
         path = nx.draw_networkx_edges(self.road_map.graph, pos=self.get_node_positions(),
                                       edgelist=best_path_edge,
-                                      width=10, alpha=0.5, edge_color='r')
+                                      width=8, alpha=0.2, edge_color='blue')
         plt.pause(0.1)
         return path
 

@@ -25,7 +25,7 @@ def main_function(source,destination,ambulance_speed):
             next(points)
 
             for row in points:
-                myGraph.add_node((int(row[0]), int(row[1])), traffic_cong=int(row[2]))
+                myGraph.add_node((int(row[0]), int(row[1])), traffic_cong=int(row[2]),name=row[6])
 
         with open("roads.csv", "r") as f:
             roads = csv.reader(f)
