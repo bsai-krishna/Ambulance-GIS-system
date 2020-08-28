@@ -2,11 +2,13 @@ from tkinter import *
 #from tkinter.ttk import Combobox
 #import main as m
 import csv
+from tkinter import ttk
 
 window=Tk()
 window.configure(background='light blue')
 
 def start():
+    
     if (destination.get() == "" and source.get() == "") or (destination.get()==source.get()):
         print("empty/invalid inputs")
         
@@ -28,7 +30,7 @@ def start():
 
 var = StringVar()
 var.set("Pulchowk")
-data=("Pulchowk", "Baneswor", "Thapathali", "Maitighar","Jawlakhel","Kupondole")
+data=("Pulchowk", "Baneswor", "Thapathali", "Maitighar","Jawlakhel","Patan","RNAC","Satdobato","Kapan","Lagankhel")
 
 
 lbl=Label(window, text="Ambulance GIS System", fg='black', font=("Helvetica", 20),bg='light blue')
@@ -43,27 +45,20 @@ lbl3.place(x=80, y=140)
 
 lbl4=Label(window, text="Destination", fg='black', font=("Helvetica", 10),bg='light blue')
 lbl4.place(x=160, y=180)
-destination=Entry()
-destination.place(x=140,y=200)
+
+destination = ttk.Combobox(window, values=data)
+destination.place(x=130,y=200)
 
 lbl5=Label(window, text="Speed", fg='black', font=("Helvetica", 10),bg='light blue')
 lbl5.place(x=160, y=230)
 speed=Entry()
 speed.place(x=140,y=250)
 
-
-#cb=Combobox(window, values=data)
-#cb.place(x=60, y=150)
-
 lbl5=Label(window, text="Where are you?", fg='black', font=("Helvetica", 10), bg='light blue')
 lbl5.place(x=150, y=280)
-source=Entry()
-source.place(x=140,y=300)
 
-
-#cb1=Combobox(window, values=data)
-#cb1.place(x=60, y=300)
-
+source = ttk.Combobox(window, values=data)
+source.place(x=130,y=300)
 
 btn=Button(window, text="Start Driving", fg='white',bg='black',command=start)
 btn.place(x=160, y=400)
