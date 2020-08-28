@@ -23,4 +23,9 @@ Or all these packages can be directly installed using the requiremnts.txt using 
 * Go to project directory
 * Run simulation using python <br/> ```python ui.py```
 
+## Screenshots:
+![image info](./ui.PNG)
+![image info](./simulation_1.png)
+![image_info](./simulation_2.png)
+
 #Health and Urban Population Management
