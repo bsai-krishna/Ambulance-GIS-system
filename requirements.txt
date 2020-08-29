@@ -1,6 +1,5 @@
-simpy
-sympy
-matplotlib
-networkx
-pandas
+simpy==4.0.1
+sympy==1.6.2
+matplotlib==3.3.1
+networkx==2.5
 
