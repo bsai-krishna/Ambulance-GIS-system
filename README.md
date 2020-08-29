@@ -21,7 +21,7 @@ Or all these packages can be directly installed using the requiremnts.txt using 
 
 ## Running:
 * Go to project directory
-* Run simulation using python <br/> ```python ui.py```
+* Run simulation using python <br/> ```python main.py```
 
 ## Screenshots:
 ![image info](./ui.PNG)
