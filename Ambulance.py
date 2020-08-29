@@ -63,7 +63,7 @@ class Ambulance(object):
                     # finding which point moves the ambulance towards next node
                     self.position = min(dist_with_next_node.items(), key=lambda k: k[1])[0]
 
-                point = plt.plot(self.position[0], self.position[1], marker='o', color='r',markersize=15)
+                point = plt.plot(self.position[0], self.position[1], marker='o', color='r',markersize=12)
                 plt.pause(0.1)
 
             path.remove()
