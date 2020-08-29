@@ -91,6 +91,9 @@ class Ambulance(object):
         positions = self.get_node_positions()
 
         plt.clf()
+
+        plt.get_current_fig_manager().window.state('zoomed')
+
         my_labels = defaultdict(list)
         node_congestion = nx.get_node_attributes(self.road_map.graph, 'traffic_cong')
         node_names = nx.get_node_attributes(self.road_map.graph, 'name')
@@ -103,7 +106,7 @@ class Ambulance(object):
                                 labels=my_labels, font_color='black', font_size=10)
 
         legend_elements = [Line2D([0], [0], color='b',alpha=0.5, lw=4, label='Best Path'),
-                   Line2D([0], [0], marker='o', color='w',markerfacecolor='r', markersize=12,label='Ambuance Position')]
+                   Line2D([0], [0], marker='o', color='w',markerfacecolor='r', markersize=12, label='Ambulance Position')]
         plt.legend(handles=legend_elements, loc='upper right')
 
         plt.ion()
@@ -130,7 +133,7 @@ class Ambulance(object):
 
         path = nx.draw_networkx_edges(self.road_map.graph, pos=self.get_node_positions(),
                                       edgelist=best_path_edge,
-                                      width=8, alpha=0.5, edge_color='blue')
+                                      width=8, alpha=0.4, edge_color='blue')
         plt.pause(0.1)
         return path
 

@@ -25,7 +25,8 @@ Or all these packages can be directly installed using the requiremnts.txt using 
 
 ## Screenshots:
 ![image info](./ui.PNG)
-![image info](./simulation_1.png)
-![image_info](./simulation_2.png)
+![image info](./simulate_1.png)
+![image_info](./simulate_2.png)
+![image_info](./simulate_3.png)
 
 #Health and Urban Population Management
