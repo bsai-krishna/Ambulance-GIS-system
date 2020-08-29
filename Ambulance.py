@@ -3,6 +3,7 @@ from sympy import symbols, Eq, solve  # for solving equations
 import matplotlib.pyplot as plt
 import networkx as nx
 from collections import defaultdict
+from matplotlib.lines import Line2D
 
 
 def find_distance(p1, p2):
@@ -80,6 +81,10 @@ class Ambulance(object):
             nx.draw(self.road_map.graph, pos=self.get_node_positions())
             nx.draw_networkx_labels(self.road_map.graph.nodes, pos=self.get_node_positions(),
                                     labels=my_labels, font_color='black', font_size=10)
+
+            legend_elements = [Line2D([0], [0], color='b',alpha=0.5, lw=4, label='Best Path'),
+                   Line2D([0], [0], marker='o', color='w',markerfacecolor='r', markersize=12,label='Ambuance Position')]  
+            plt.legend(handles=legend_elements, loc='upper right')
         print(final_best_path)
 
     def draw_road_map(self):
@@ -96,6 +101,10 @@ class Ambulance(object):
         nx.draw(self.road_map.graph, with_labels=False, pos=positions)
         nx.draw_networkx_labels(self.road_map.graph.nodes, pos=positions,
                                 labels=my_labels, font_color='black', font_size=10)
+
+        legend_elements = [Line2D([0], [0], color='b',alpha=0.5, lw=4, label='Best Path'),
+                   Line2D([0], [0], marker='o', color='w',markerfacecolor='r', markersize=12,label='Ambuance Position')]
+        plt.legend(handles=legend_elements, loc='upper right')
 
         plt.ion()
         plt.show()
@@ -121,7 +130,7 @@ class Ambulance(object):
 
         path = nx.draw_networkx_edges(self.road_map.graph, pos=self.get_node_positions(),
                                       edgelist=best_path_edge,
-                                      width=8, alpha=0.2, edge_color='blue')
+                                      width=8, alpha=0.5, edge_color='blue')
         plt.pause(0.1)
         return path
 
